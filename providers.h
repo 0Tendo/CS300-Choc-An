@@ -4,6 +4,9 @@
 #include <fstream>
 #include <time.h>
 
+
+
+
 //Ethan Saftler, Ryan Tran, Cristian Torres Salazar, Matthew Marcellinus, Yuxin Sun, Chentao Ma
 
 //CS300 Term Project - PSU Winter 2022
@@ -36,15 +39,13 @@ void uppercaser(char * to_upper);
 //provider class
 struct service_node
 {
-    service_node();
-    ~service_node();
     service_node * next;
-    char * current_date;
-    char * service_date;
-    char * provider_number;
-    char * member_number;
-    char * service_code;
-    int fee;
+    string current_date;
+    string service_date;
+    string provider_number;
+    string member_number;
+    string service_code;
+    float fee;
 };
 
 class provider
@@ -56,11 +57,18 @@ class provider
         int create();
         int copy_provider(const provider & provider_to_copy);
         int check_format(bool display = true);
-        //TO DO int add_service();
+        
         int retrieve_name(char * & name_to_return);
         int retrieve_number(char * & numb_to_return);
         int display() const;
+    
+        // CTS - Adds a service
+        int Add_Service();
+
     private:
+        // CTS - Recursively add a service
+        int AddService(service_node*& head);
+
         char * name;
         char * address;
         char * city;

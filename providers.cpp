@@ -329,3 +329,99 @@ int providers::display_all(node * root){
         return i;
     }
 }
+
+
+/// <summary>
+/// Adds the first node of a service list or invokes recursive method to create
+/// a new service node.
+/// </summary>
+/// <returns>1 indicating successfull add</returns>
+/// <remarks>Developer CTS if you have questions</remarks>
+int provider::Add_Service() {
+
+    // check if the list is empty
+    if (services == NULL) {
+        services = new service_node;
+
+        // Gather data \/
+        cout << "\n\nEnter the current date: \n\n" << endl;
+        getline(cin, services->current_date);
+
+        cout << "Enter the date of service: \n\n" << endl;
+        getline(cin, services->service_date);
+
+        cout << "Enter the Provider Number: \n\n" << endl;
+        getline(cin, services->provider_number);
+
+        cout << "Enter the Member Number: \n\n" << endl;
+        getline(cin, services->member_number);
+
+        cout << "Enter the Service Code: \n\n" << endl;
+        getline(cin, services->service_code);
+
+        cout << "Enter the Service Fee: \n\n" << endl;
+        cin >> services->fee;
+        cin.ignore(100, '\n');
+
+        // set next to null (this will be appended to the list)
+        services->next = NULL;
+
+        return 1;
+    }
+    else {
+        // invoke recursive method with begining of list if list is not empty
+        return AddService(services);
+    }
+
+}
+
+/// <summary>
+/// This method will recursively add a service to the list of services for 
+/// the respective provider. Service data is collected within the method
+/// </summary>
+/// <param name="service">The starting node of a Linked List</param>
+/// <returns>1 indicating successfull add</returns>
+int provider::AddService(service_node*& service) {
+
+    // single case checking for the end of the list
+    if (service->next == NULL) {
+
+        // create new temp node to add
+        service_node* temp = new service_node;
+
+        // gather node data
+        cout << "\n\nEnter the current date: \n\n" << endl;
+        getline(cin, temp->current_date);
+
+        cout << "Enter the date of service: \n\n" << endl;
+        getline(cin, temp->service_date);
+
+        cout << "Enter the Provider Number: \n\n" << endl;
+        getline(cin, temp->provider_number);
+
+        cout << "Enter the Member Number: \n\n" << endl;
+        getline(cin, temp->member_number);
+
+        cout << "Enter the Service Code: \n\n" << endl;
+        getline(cin, temp->service_code);
+
+        cout << "Enter the Service Fee: \n\n" << endl;
+        cin >> temp->fee;
+        cin.ignore(100, '\n');
+
+        // this will be the last node
+        temp->next = NULL;
+
+        // add node to end of list
+        service->next = temp;
+
+        // disregard temp
+        temp = NULL;
+
+        // unwind recursive stack
+        return 1;
+    }
+
+    // traverse if we are not at the end
+    return AddService(service->next);
+}
