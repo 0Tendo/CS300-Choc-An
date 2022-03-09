@@ -593,10 +593,60 @@ int provider::DisplayAllService(service_node*& serv) {
     // invoke helper method to display service details
     DisplayService(serv);
 
-
     int count = 0;
     //traverse the list recursively
     count += DisplayAllService(serv->next);
 
     return ++count;
+}
+
+/// <summary>
+/// Looks for a service and if found extracts the service fee
+/// </summary>
+/// <param name="sCode">Service code to look for</param>
+/// <returns>Service Fee if found</returns>
+/// CTS
+float provider::GetServiceFee(string sCode) {
+
+    if (!services) {
+        return -1;
+    }
+    // Check if there is only one node and if it matches search key
+    else if ((!services->next) && (services->service_code == sCode)) {
+        DisplayService(services);
+        return services->fee;
+    }
+    else {
+        // traverse if more than one node and handle return val
+        float success = GetServiceFee(services, sCode);
+
+        if (success != -1) {
+            return success;
+        }
+        else {
+            cout << "\n\nError Service# " << sCode << " Not Found, Try Again." << endl;
+        }
+    }
+}
+
+/// <summary>
+/// Traverses the service list looking for a service code to extract
+/// the fee value.
+/// </summary>
+/// <param name="service">Pointer to service list</param>
+/// <param name="sCode">Service Code value</param>
+/// <returns>Service Fee if found.</returns>
+/// CTS
+float provider::GetServiceFee(service_node* service, string sCode) {
+
+    if (!service) {
+        return -1;
+    }
+    // Look for match ahead of recursion to redice overhead.
+    if (service->service_code == sCode) {
+        DisplayService(service);
+        return service->fee;
+    }
+
+    return GetServiceFee(service->next, sCode);
 }
