@@ -45,6 +45,7 @@ struct service_node
     string provider_number;
     string member_number;
     string service_code;
+    string service_name;
     float fee;
 };
 
@@ -72,14 +73,21 @@ class provider
         // CTS - Deletes a service
         int DeleteService(string key);
 
+        // CTS - Display All Services
+        int DisplayAll();
+
     private:
         // CTS - Recursively add a service
         int AddService(service_node*& head);
+
         // CTS - Recursively Delete All
         int DeleteAllServices(service_node*& service);
 
         // CTS - Deletes a single service
         int DeleteService(service_node*& service, string key);
+
+        // CTS - Display all services
+        int DisplayAll(service_node *& service);
 
         char * name;
         char * address;

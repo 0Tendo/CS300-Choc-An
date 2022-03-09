@@ -359,6 +359,9 @@ int provider::Add_Service() {
         cout << "Enter the Service Code: \n\n" << endl;
         getline(cin, services->service_code);
 
+        cout << "Enter the Service Code: \n\n" << endl;
+        getline(cin, services->service_Name);
+
         cout << "Enter the Service Fee: \n\n" << endl;
         cin >> services->fee;
         cin.ignore(100, '\n');
@@ -404,6 +407,9 @@ int provider::AddService(service_node*& service) {
 
         cout << "Enter the Service Code: \n\n" << endl;
         getline(cin, temp->service_code);
+
+        cout << "Enter the Service Name: \n\n" << endl;
+        getline(cin, temp->service_Name);
 
         cout << "Enter the Service Fee: \n\n" << endl;
         cin >> temp->fee;
