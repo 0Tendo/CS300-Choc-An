@@ -48,6 +48,7 @@ struct service_node
     float fee;
 };
 
+// "CTS" reach out to cristian for questions on these code sections
 class provider
 {
     public:
@@ -65,14 +66,20 @@ class provider
         // CTS - Adds a service
         int Add_Service();
 
-        // Deletes all services
+        // CTS - Deletes all services
         int DeleteAllServices();
+
+        // CTS - Deletes a service
+        int DeleteAService(string key);
 
     private:
         // CTS - Recursively add a service
         int AddService(service_node*& head);
-        // cts - Recursively Delete All
-        int DeleteAllServices();
+        // CTS - Recursively Delete All
+        int provider::DeleteAllServices(service_node*& service)
+
+        // CTS - Deletes a single service
+        int DeleteAService(service_node*& service, string key);
 
         char * name;
         char * address;
