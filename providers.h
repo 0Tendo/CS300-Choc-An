@@ -70,7 +70,7 @@ class provider
         int DeleteAllServices();
 
         // CTS - Deletes a service
-        int DeleteAService(string key);
+        int DeleteService(string key);
 
     private:
         // CTS - Recursively add a service
@@ -79,7 +79,7 @@ class provider
         int DeleteAllServices(service_node*& service);
 
         // CTS - Deletes a single service
-        int DeleteAService(service_node*& service, string key);
+        int DeleteService(service_node*& service, string key);
 
         char * name;
         char * address;
