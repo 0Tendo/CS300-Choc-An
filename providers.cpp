@@ -425,3 +425,52 @@ int provider::AddService(service_node*& service) {
     // traverse if we are not at the end
     return AddService(service->next);
 }
+
+/// <summary>
+/// Deletes all services for the respective provider.
+/// Invokes recursive delete all if there are more
+/// than one node
+/// </summary>
+/// <returns>Number of services deleted</returns>
+int provider::DeleteAllServices()
+{
+    int count = 0;
+
+    // Check for empty list
+    if (!services) {
+        return count;
+    }
+    // check for a single node
+    else if (!services->next) {
+        delete services;
+        services = NULL;
+        return ++count;
+    }
+    // removes all if there are more than one
+    else {
+        return DeleteAllServices(services);
+    }
+}
+
+/// <summary>
+/// Recursively deletes all services for the provider
+/// </summary>
+/// <param name="service">pointer to the service list</param>
+/// <returns>Number of services removed</returns>
+int provider::DeleteAllServices(service_node*& service)
+{
+    // check if we are at the end
+    if (!service) {
+        return 0;
+    }
+
+    // traverse to the end of the list
+    int count = DeleteAllServices(service->next);
+
+    // Delete nodes at tail end of recursion
+    delete service;
+    service = NULL;
+
+    // return and increment node count
+    return ++count;
+}

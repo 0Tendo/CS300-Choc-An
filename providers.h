@@ -65,9 +65,14 @@ class provider
         // CTS - Adds a service
         int Add_Service();
 
+        // Deletes all services
+        int DeleteAllServices();
+
     private:
         // CTS - Recursively add a service
         int AddService(service_node*& head);
+        // cts - Recursively Delete All
+        int DeleteAllServices();
 
         char * name;
         char * address;
