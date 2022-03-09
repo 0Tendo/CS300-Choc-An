@@ -337,6 +337,7 @@ int providers::display_all(node * root){
 /// </summary>
 /// <returns>1 indicating successfull add</returns>
 /// <remarks>Developer CTS if you have questions</remarks>
+/// CTS
 int provider::Add_Service() {
 
     // check if the list is empty
@@ -384,6 +385,7 @@ int provider::Add_Service() {
 /// </summary>
 /// <param name="service">The starting node of a Linked List</param>
 /// <returns>1 indicating successfull add</returns>
+/// CTS
 int provider::AddService(service_node*& service) {
 
     // single case checking for the end of the list
@@ -438,6 +440,7 @@ int provider::AddService(service_node*& service) {
 /// than one node
 /// </summary>
 /// <returns>Number of services deleted</returns>
+/// CTS
 int provider::DeleteAllServices()
 {
     int count = 0;
@@ -463,6 +466,7 @@ int provider::DeleteAllServices()
 /// </summary>
 /// <param name="service">pointer to the service list</param>
 /// <returns>Number of services removed</returns>
+/// CTS
 int provider::DeleteAllServices(service_node*& service)
 {
     // check if we are at the end
@@ -532,4 +536,67 @@ int provider::DeleteService(service_node*& service, string servCode)
         ++success;
     }
     return success;
+}
+
+/// <summary>
+/// Displays all services for a provider.
+/// </summary>
+/// <returns>Number of nodes displayed</returns>
+/// CTS
+int provider::DisplayAllService() {
+
+    cout << "\nDisplaying all services...\n\n";
+
+    // check for empty list
+    if (!services) {
+        return -1;
+    }
+    // check for one service
+    else if (!services->next) {
+        // invoke helper to doa ctual displaying
+        DisplayService(services);
+    }
+    // traverse entire list if more than one service
+    else {
+        return DisplayAllService(services);
+    }
+}
+
+/// <summary>
+/// Helper method takes in a service node and displays it
+/// </summary>
+/// <param name="serv">Service node to display</param>
+/// CTS
+void provider::DisplayService(service_node* serv) {
+    // check node is not null
+    if (serv) {
+        cout << "\n\n";
+        cout << " Service Name: " << serv->service_name << endl;
+        cout << " Service Code: " << serv->service_code << endl;
+        cout << "  Service Fee: " << serv->fee << endl << endl;
+    }
+}
+
+/// <summary>
+/// Recursevley traverses the service list and displays all service nodes
+/// </summary>
+/// <param name="serv">pointer to service node list to display</param>
+/// <returns>Number of nodes displayed</returns>
+/// CTS
+int provider::DisplayAllService(service_node*& serv) {
+
+    // Check that the list is not empty
+    if (!serv) {
+        return 0;
+    }
+
+    // invoke helper method to display service details
+    DisplayService(serv);
+
+
+    int count = 0;
+    //traverse the list recursively
+    count += DisplayAllService(serv->next);
+
+    return ++count;
 }
