@@ -76,7 +76,7 @@ class provider
         // CTS - Recursively add a service
         int AddService(service_node*& head);
         // CTS - Recursively Delete All
-        int provider::DeleteAllServices(service_node*& service)
+        int DeleteAllServices(service_node*& service);
 
         // CTS - Deletes a single service
         int DeleteAService(service_node*& service, string key);

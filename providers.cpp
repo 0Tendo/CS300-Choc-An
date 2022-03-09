@@ -474,3 +474,56 @@ int provider::DeleteAllServices(service_node*& service)
     // return and increment node count
     return ++count;
 }
+
+/// <summary>
+/// Deletes a single service matching the key passed in.
+/// </summary>
+/// <param name="servCode">Service code to look for</param>
+/// <returns>-1 OR 0 if list is empty, 1 if success</returns>
+/// CTS
+int provider::DeleteService(string servCode)
+{
+    // check for empty list
+    if (!services) {
+        return -1;
+    }
+    // check for single node and if a match
+    else if ((!services->next) && (services->service_code == servCode)) {
+        delete services;
+        services = NULL;
+        return 1;
+    }
+    // check rest of the list
+    else {
+        return DeleteService(services, servCode);
+    }
+}
+
+/// <summary>
+/// Deletes a single service matcing the service code key
+/// passed in.
+/// </summary>
+/// <param name="service">pointer to service list</param>
+/// <param name="servCode">Service code key to remove</param>
+/// <returns>0 if failed, 1 if successfull</returns>
+/// CTS
+int provider::DeleteService(service_node*& service, string servCode)
+{
+    // check for empty list
+    if (!service) {
+        return 0;
+    }
+
+    // recursively traverse list
+    int success = DeleteService(service->next, servCode);
+
+    // check if we have a match
+    if (service->service_code == servCode) {
+        service_node* temp = service->next;
+        delete service;
+        service = temp;
+        temp = NULL;
+        ++success;
+    }
+    return success;
+}
