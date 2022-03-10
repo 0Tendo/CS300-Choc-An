@@ -1,8 +1,6 @@
 #ifndef DEFINITION_H
 #define DEFINITION_H
 
-const int MIN_MANAGER = 100000000;	 // Lower bound for manager ID numbers
-const int MAX_MANAGER = 199999999;	 // Upper bound for manager ID numbers
 const int MAX_PROVIDER = 299999999;  // Upper bound for provider ID numbers
 
 const int MAX_ID = 999999999;		 // MUST be less than 10 digits
