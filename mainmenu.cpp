@@ -18,7 +18,7 @@ int main()
 	int check = 0;
 
 	//welcome message
-	cout << "\n\nWelcome to the CS300 Contact and Device Manager\nCreated by Ethan Saftler\n\n\n";
+	cout << "\n\nWelcome to the Chocoholics Terminal Manager\n\n\n";
 
 	//while loop for main menu using switch statement for selection
 	while (selection != 'Z')
