@@ -6,3 +6,7 @@ using namespace std;
 
 //CS300 Term Project - PSU Winter 2022
 //Chocoholics Service Terminal Software
+member::member()
+{
+    
+}
