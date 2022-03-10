@@ -11,12 +11,19 @@ Program Purpose: This is a service terminal for the mock company "Chocoholics An
 Two terminal options - manager and provider
 
 All functionality can be accessed through the Main Menu upon system launch:
+
 Add members
+
 Delete members //manager only
+
 Add providers //manager only
+
 Delete providers //manager only
+
 Add member-provider services
+
 Display weekly report
+
 Display provider list
 
 
