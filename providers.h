@@ -1,8 +1,9 @@
 #include <iostream>
 #include <cctype>
-#include <cstring>
+#include <string>
 #include <fstream>
-#include <time.h>
+#include <cstring>
+using namespace std;
 
 
 
@@ -72,6 +73,7 @@ class provider
         int DeleteService(string key);
         // CTS - Display All Services
         int DisplayAllService();
+        float GetServiceFee(string sCode);
 
     private:
         // CTS - Recursively add a service
@@ -82,7 +84,8 @@ class provider
         int DeleteService(service_node*& service, string key);
         // CTS - Display all services
         int DisplayAllService(service_node *& service);
-        void DisplayService(service(serv);
+        void DisplayService(service_node * serv);
+        float GetServiceFee(service_node* service, string sCode);
 
         char * name;
         char * address;

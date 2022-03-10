@@ -1,5 +1,4 @@
 #include "providers.h"
-using namespace std;
 
 //Ethan Saftler, Ryan Tran, Cristian Torres Salazar, Matthew Marcellinus, Yuxin Sun, Chentao Ma
 
@@ -46,14 +45,6 @@ void uppercaser(char * to_upper)
     return;
 }
 
-service_node::service_node()
-{
-    next = NULL;
-}
-service_node::~service_node()
-{
-    next = NULL;
-}
 
 node::node()
 {
@@ -296,6 +287,7 @@ int providers::display(char * provider_number){
     return display(root, provider_number);
 }
 
+//recursive call
 int providers::display(node * root, char * provider_number){
     if (!root) return 0;
     else{
@@ -314,6 +306,7 @@ int providers::display(node * root, char * provider_number){
         return i;
     }
 }
+
 
 int providers::display_all(){
     return display_all(root);
@@ -361,7 +354,7 @@ int provider::Add_Service() {
         getline(cin, services->service_code);
 
         cout << "Enter the Service Code: \n\n" << endl;
-        getline(cin, services->service_Name);
+        getline(cin, services->service_name);
 
         cout << "Enter the Service Fee: \n\n" << endl;
         cin >> services->fee;
@@ -411,7 +404,7 @@ int provider::AddService(service_node*& service) {
         getline(cin, temp->service_code);
 
         cout << "Enter the Service Name: \n\n" << endl;
-        getline(cin, temp->service_Name);
+        getline(cin, temp->service_name);
 
         cout << "Enter the Service Fee: \n\n" << endl;
         cin >> temp->fee;
