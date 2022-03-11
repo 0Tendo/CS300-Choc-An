@@ -3,10 +3,6 @@
 
 
 
-const int comment = 100;
-const int MMDDYY = 7;
-const int NAMESIZE = 7;
-
 class Service
 {
 public:
