@@ -16,6 +16,7 @@ int main()
 	char quit = 'a';
 	provider * temp_provider = new provider;
 	providers * temp_providers = new providers;
+	//Service * new_service = new Service;
 	tree* new_tree=new tree;
 	int check = 0;
 
@@ -66,8 +67,7 @@ int main()
 			}
 				break;
 			case '2':
-				Service new_service;
-				new_service->getService();
+				//new_service->getService();
 				cout << "\n\nPress enter to return to the main menu...\n";
 				cin.get(); 
 				break;
