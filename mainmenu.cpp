@@ -68,11 +68,13 @@ int main()
 			}
 				break;
 			case '2':
+				{
 				Service new_service ;
 				new_service.getService();
 				cout << "\n\nPress enter to return to the main menu...\n";
 				cin.get(); 
 				break;
+				}
 			case '3':	
 				temp_providers->display_all();
 				cout << "\n\nPress enter to return to the main menu...\n";
