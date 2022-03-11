@@ -73,7 +73,7 @@ int Service::getService()
 	char se_name[NAMESIZE];
 	int code;
 	char pr_date[MMDDYY];
-	char* lo_date[MMDDYY];
+	char lo_date[MMDDYY];
 	int memID;
 	int proID;
 	float fee;
