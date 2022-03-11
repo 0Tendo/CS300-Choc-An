@@ -23,6 +23,7 @@ class member
         int display() const;
         int delete_all();
         char * get_name();
+        int get_memberID();
     private:
         char * name;
         char * address;
@@ -47,6 +48,7 @@ class node_member
 	node_member*remove(char*name,node_member *parent, node_member*&root, int path);
 	node_member*IOS(node_member*&current,node_member*&parent);
 	bool search(char*name, member**i);
+        bool search_ID(int search_num);
 	int delete_all();
 	void display() const;
 	friend ostream&operator<<(ostream &out,const node_member&to_display);
@@ -67,6 +69,7 @@ class tree
 		int insert(member*to_add);
 		int remove(char*name);
 		bool search(char*name, member**i);
+                bool search_ID(int number);
 		int remove_all();
 		int display();
 	private:

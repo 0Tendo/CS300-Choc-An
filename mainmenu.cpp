@@ -43,10 +43,26 @@ int main()
 		switch(selection)
 		{
 			case '1':
+			{
 				//insert case for adding new member here
-				//TODO - select current member 
+				int number=0;
+				 bool bad=false;
+   				 do
+   				 {
+   				     cout<<"Please enter the member ID (9digit)"<<endl;
+   				     cin>>number;
+    			     bad=cin.fail();
+    			     if(bad)
+      		         cout<<"The Id need to be 9 digits"<<endl;
+      			     cin.clear();
+    			     cin.ignore(100,'\n');   
+  				  } while (bad||number>999999999||number<0);
+				int i=new_tree->search_ID(number);
+				if(i==0)
+				cout<<"Sorry we don't have this member"<<endl;
 				cout << "\n\nPress enter to return to the main menu...\n";
 				cin.get(); 
+			}
 				break;
 			case '2':
 				//TODO - add service

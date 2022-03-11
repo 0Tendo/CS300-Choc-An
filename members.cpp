@@ -32,7 +32,8 @@ member::~member()
 //create a member
 int member::create_member()
 {
-    bool bad=false;
+
+ bool bad=false;
     do
     {
         cout<<"Please enter the member ID (9digit)"<<endl;
@@ -43,7 +44,7 @@ int member::create_member()
         cin.clear();
         cin.ignore(100,'\n');   
     } while (bad||number>999999999||number<0);
-    
+
 
     char temp_name[NAMESIZE];
     char temp_address[ADDRESSSIZE];
@@ -143,6 +144,11 @@ int member::retrieve_name(char * & name_to_ret)
 char*member::get_name()
 {
     return name;
+}
+//for to search by ID
+int member::get_memberID()
+{
+    return number;
 }
 
 //BST of member
@@ -378,6 +384,23 @@ bool node_member::search(char*name_search, member**i)
 	return 1;
 			
 }
+//search the node by number
+bool node_member::search_ID(int search_num)
+{
+	if(this==NULL)
+		return 0;
+	if(search_num!=this->data->get_memberID())
+	{
+		this->left->search_ID(search_num)+this->right->search_ID(search_num);
+    }
+    if(search_num==this->data->get_memberID())
+    {
+	    this->data->display();
+	    return 1;
+    }
+    return 0;
+			
+}
 //delete the whole tree
 int node_member::delete_all()
 {
@@ -456,6 +479,12 @@ bool tree::search(char*name, member**i)
 	if(!root)
 		return 0;
 	return root->search(name,i);
+}
+bool tree::search_ID(int search_num)
+{
+	if(!root)
+		return 0;
+	return root->search_ID(search_num);
 }
 //remove all node in the list
 int tree::remove_all()
