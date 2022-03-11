@@ -2,18 +2,6 @@
 #include <cstring>
 #include "Service.h"
 
-struct Serv
-{
-   	char* service_name;
-	int service_code;
-	char* provided_date;
-	char* logged_date;
-	int memberID;
-	int providerID;
-	float service_fee;
-	char* comments;
-};
-
 Service::Service()
 {
 	service_name = NULL;
@@ -26,7 +14,7 @@ Service::Service()
 	comments = NULL;
 }
 
-Service::Service(char* se_name, int code, char* pr_date, char* lo_date, int memID, int proID, float fee, char* se_comments) {
+Service::Service(char* se_name, int code, char* pr_date, char* lo_date, int memID, int proID, float fee, char * se_comments) {
 
     service_name = new char[MAX_NAME];
     strcpy(service_name, se_name);
@@ -66,31 +54,6 @@ Service::Service(char* se_name, int code, char* pr_date, char* lo_date, int memI
 	strcpy(comments, se_comments);
 }
 
-Service::Service(const Service* To_Add)
-{
-	if (!To_Add)
-		return;
-
-	service_name = new char[MAX_NAME];
-	strcpy(service_name, To_Add->service_name);
-
-	service_code = To_Add->service_code;
-
-	provided_date = new char[MAX_DATE];
-	strcpy(provided_date, To_Add->provided_date);
-	/* ToDo Check_data */
-	
-	logged_date = new char[MAX_DATE];
-	strcpy(logged_date, To_Add->logged_date);
-	/* ToDo Check_data */
-
-	memberID = To_Add->memberID;
-	providerID = To_Add->providerID;
-	service_fee = To_Add->service_fee;
-
-	comments = new char[MAX_COMMENT];
-	strcpy(comments, To_Add->comments);
-}
 
 
 Service::~Service()
@@ -114,39 +77,36 @@ int Service::getService()
 	int memID;
 	int proID;
 	float fee;
-	char* se_comments;
+	char * se_comments;
 
 	std::cout << "Service ID: " << std::endl;
-	cin >> code;
+	std::cin >> code;
 
 	/*se_name = */           //ID matches name 
 
 	std::cout << "Date Provided: " << std::endl;
-	cin.get(pr_date, 12);
+	std::cin.get(pr_date, 12);
 
 	std::cout << "Date Logged: " << std::endl;
-	cin.get(lo_date, 12);
-
-	memID = number;
+	std::cin.get(lo_date, 12);
 
 	std::cout << "Provider ID: " << std::endl;
-	cin >> proID;
+	std::cin >> proID;
 
 	/*fee = */              //ID matches  fee
 	
 	std::cout << "\nWould you like to record comments on this service? Y/N\n";
-	if (yesorno()) {
+	if ("Y") {
 		do {
 			std::cout << "\nEnter your comments (" << MAX_COMMENT - 1 << " characters max)\n";
 			std::cin >> se_comments;
-			if (strlen(se_comments.c_str()) > MAX_COMMENT - 1) {
+			if (strlen(se_comments) > MAX_COMMENT - 1) {
 				std::cout << "Comment too long.\n";
 			}
-		} while (strlen(se_comments.c_str()) > MAX_COMMENT - 1);
+		} while (strlen(se_comments) > MAX_COMMENT - 1);
 	}
 	Service(se_name, code, pr_date, lo_date, memID, proID, fee, se_comments);
 	display();
-	return 0;
 }
 
 int Service::display()
