@@ -14,7 +14,7 @@ Service::Service()
 	comments = NULL;
 }
 
-Service::Service(char* se_name, int code, char* pr_date, char* lo_date, int memID, int proID, float fee, char * se_comments) {
+//Service::Service(char* se_name, int code, char* pr_date, char* lo_date, int memID, int proID, float fee, char * se_comments) {
 
     service_name = new char[MAX_NAME];
     strcpy(service_name, se_name);
@@ -52,7 +52,7 @@ Service::Service(char* se_name, int code, char* pr_date, char* lo_date, int memI
 
 	comments = new char[MAX_COMMENT];
 	strcpy(comments, se_comments);
-}
+}//
 
 
 
@@ -70,14 +70,13 @@ Service::~Service()
 
 int Service::getService()
 {
-	char* se_name;
 	int code;
-	char* pr_date;
-	char* lo_date;
+	char pr_date[MMDDYY];
+	char* lo_date[MMDDYY];
 	int memID;
 	int proID;
 	float fee;
-	char * se_comments;
+	char se_comments[comment];
 
 	std::cout << "Service ID: " << std::endl;
 	std::cin >> code;
@@ -85,11 +84,11 @@ int Service::getService()
 	/*se_name = */           //ID matches name 
 
 	std::cout << "Date Provided: " << std::endl;
-	std::cin.get(pr_date, 12);
-
+	std::cin.get(pr_date,MMDDYY,'\n');
+	std::cin.ignore(100, '\n');
 	std::cout << "Date Logged: " << std::endl;
-	std::cin.get(lo_date, 12);
-
+	std::cin.get(lo_date,MMDDYY,'\n');
+	std::cin.ignore(100, '\n');
 	std::cout << "Provider ID: " << std::endl;
 	std::cin >> proID;
 
@@ -105,7 +104,43 @@ int Service::getService()
 			}
 		} while (strlen(se_comments) > MAX_COMMENT - 1);
 	}
-	Service(se_name, code, pr_date, lo_date, memID, proID, fee, se_comments);
+	service_name = new char[MAX_NAME];
+    strcpy(service_name, se_name);
+
+    if (code <= 0 || code > MAX_SERVICE ) {
+        service_code = 0;
+    } 
+    else 
+        service_code = code;
+
+    provided_date = new char[MAX_DATE];
+    strcpy(provided_date, pr_date);
+    /* ToDo Check_data */
+    logged_date = new char[MAX_DATE];
+    strcpy(logged_date, lo_date);
+    /* ToDo Check_data */
+
+    if (proID <= 0 || proID > MAX_ID) {
+        providerID = 0;
+    } 
+    else 
+        providerID = proID;
+
+    if (memID <= 0 || memID > MAX_ID) {
+        memberID = 0;
+    } 
+    else 
+        memberID = memID;
+
+    if (fee > MAX_FEE || fee <= 0) {
+        service_fee = 0.0;
+    }
+	else 
+        service_fee = fee;
+
+	comments = new char[MAX_COMMENT];
+	strcpy(comments, se_comments);
+	
 	display();
 	return 0;
 }
