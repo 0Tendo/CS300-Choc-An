@@ -107,6 +107,7 @@ int Service::getService()
 	}
 	Service(se_name, code, pr_date, lo_date, memID, proID, fee, se_comments);
 	display();
+	return 0;
 }
 
 int Service::display()
