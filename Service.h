@@ -17,7 +17,7 @@ class Service
 {
 public:
 	Service();
-	getService();
+	int getService();
 	Service(char* se_name, int code, char* pr_date, char* lo_date, int memID, int proID, float fee, char * se_comments);
 	Service(const Service* To_Add);
 	~Service();
