@@ -54,7 +54,7 @@ Service::Service(char* se_name, int code, char* pr_date, char* lo_date, int memI
         memberID = 0;
     } 
     else 
-        memberID = mID;
+        memberID = memID;
 
     if (fee > MAX_FEE || fee <= 0) {
         service_fee = 0.0;
@@ -63,7 +63,7 @@ Service::Service(char* se_name, int code, char* pr_date, char* lo_date, int memI
         service_fee = fee;
 
 	comments = new char[MAX_COMMENT];
-	strcpy(comments, s_comments);
+	strcpy(comments, se_comments);
 }
 
 Service::Service(const Service* To_Add)
@@ -105,9 +105,16 @@ Service::~Service()
 		delete [] comments;
 }
 
-Service::getService()
+int Service::getService()
 {
-	char* se_name, int code, char* pr_date, char* lo_date, int memID, int proID, float fee, char* se_comments
+	char* se_name;
+	int code;
+	char* pr_date;
+	char* lo_date;
+	int memID;
+	int proID;
+	float fee;
+	char* se_comments;
 
 	std::cout << "Service ID: " << std::endl;
 	cin >> code;
@@ -139,6 +146,7 @@ Service::getService()
 	}
 	Service(se_name, code, pr_date, lo_date, memID, proID, fee, se_comments);
 	display();
+	return 0;
 }
 
 int Service::display()
