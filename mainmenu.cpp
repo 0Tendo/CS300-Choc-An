@@ -15,6 +15,7 @@ int main()
 	char quit = 'a';
 	provider * temp_provider = new provider;
 	providers * temp_providers = new providers;
+	tree* new_tree=new tree;
 	int check = 0;
 
 	//welcome message
@@ -63,12 +64,26 @@ int main()
 				cin.get(); 
 				break;
 			case '5':
-				//TODO - add member
+			{
+				member*new_member=new member;
+                new_member->create_member();
+				new_tree->insert(new_member);
+				new_tree->display();
 				cout << "\n\nPress enter to return to the main menu...\n";
 				cin.get(); 
+			}
 				break;
-			case '6':
-				//TODO - delete member
+			case '6':	
+				{
+					char * name_todelete;
+					cout<<"Please enter the member name you want to delete.\n";
+					char temp_name[NAMESIZE];
+					cin.get(temp_name, NAMESIZE, '\n');
+    				cin.ignore(100, '\n');
+					name_todelete = new char[strlen(temp_name)+1];
+   				    strcpy(name_todelete, temp_name);
+					new_tree->remove(name_todelete);
+				}
 				cout << "\n\nPress enter to return to the main menu...\n";
 				cin.get(); 
 				break;

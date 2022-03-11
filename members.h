@@ -22,6 +22,7 @@ class member
         int retrieve_name(char * & name_to_ret);
         int display() const;
         int delete_all();
+        char * get_name();
     private:
         char * name;
         char * address;
@@ -34,34 +35,40 @@ class member
 
 
 //BST members class
-class members
+class node_member
 {
-        public:
-                members();
-                ~members();
+	public:
+	node_member();
+	~node_member();
+	node_member(member*source);
+	node_member(const node_member&source);
+	node_member&operator=(const node_member&);
+	int insert(member&to_add);
+	node_member*remove(char*name,node_member *parent, node_member*&root, int path);
+	node_member*IOS(node_member*&current,node_member*&parent);
+	bool search(char*name, member**i);
+	int delete_all();
+	void display() const;
+	friend ostream&operator<<(ostream &out,const node_member&to_display);
+                 
+	protected:
+		member*data;
+		node_member*left;
+		node_member*right;
+};
 
-                int delete_all();
-                int delete_all(node * & root);
-
-                int insert (member & member_to_insert);
-                int insert (node * & root, member & member_to_insert);
-
-                int retrieve (char * name_to_get, member & member_to_return);
-                int retrieve(node * root, char * name, member & member_to_return);
-
-                int display(char * prodiver_todisplay);
-                int display(node * root, char * member_todisplay);
-
-                int remove(char * name_to_remove);
-                int remove(node * & root, node * & prev, char * prodiver_to_remove);
-                int remove(node * & root, char * prodiver_to_remove);
-
-                int remove_member(char * member_to_remove);//, char * & found_match_name);
-                int remove_member(node * & root, char * member_to_remove, char * & found_match_name);
-
-                int height();
-                int height(node * root);
-        private:
-                node * root;
-
+class tree
+{
+	public:
+		tree();
+		~tree();
+		tree(const tree&source);
+		tree&operator=(const tree&t1);
+		int insert(member*to_add);
+		int remove(char*name);
+		bool search(char*name, member**i);
+		int remove_all();
+		int display();
+	private:
+		node_member*root;
 };
