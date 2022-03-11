@@ -15,13 +15,7 @@ Service::Service()
 }
 
 Service::Service(char* se_name, int code, char* pr_date, char* lo_date, int memID, int proID, float fee, char* se_comments) {
-	cout << "Please enter the service ID :";
-	cin >> code;
-	cout << "Please enter the provided date :";
-	cin >> pr_date;
-	cout << "Please enter the logged date :";
-	cin >> lo_date;
-	 
+
     service_name = new char[MAX_NAME];
     strcpy(service_name, se_name);
 
