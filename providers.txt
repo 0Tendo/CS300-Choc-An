@@ -1,0 +1,4 @@
+Name#Address#City#State#Number#Zip#
+Bob's Chocolate Detox#123 5th Street#Portland#OR#000000001#97061#
+Crazy Cocoa Club#90 West Ave#Portlandia#OR#000000002#97061#
+Choc Addict LTD#500 Brown Way#Tigard#OR#000000003#97059#

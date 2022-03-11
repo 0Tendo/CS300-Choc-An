@@ -22,6 +22,7 @@ int main()
 
 	//welcome message
 	cout << "\n\nWelcome to the ChocAn Terminal Manager\n\n\n";
+	temp_providers->LoadData();
 
 	//while loop for main menu using switch statement for selection
 	while (selection != 'Z')

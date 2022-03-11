@@ -36,6 +36,8 @@ bool check_if_letter(char * to_check);
 //convert array of chars to uppercase
 void uppercaser(char * to_upper);
 
+int FileSize(char * filename);
+
 //nodes for service events (used by provider and member class)/
 //provider class
 struct service_node
@@ -64,6 +66,7 @@ class provider
         int retrieve_name(char * & name_to_return);
         int retrieve_number(char * & numb_to_return);
         int display() const;
+        void LoadProvider(char * name, char * address, char * city, char * state, char * number, char * zip);
     
         // CTS - Adds a service
         int Add_Service();
@@ -134,6 +137,7 @@ class providers
                 int display_all();
                 int display_all(node * root);
 
+                void LoadData();
                 //TO DO int remove(char * name_to_remove);
                 //TO DO int remove(node * & root, node * & prev, char * prodiver_to_remove);
                 //TO DO int remove(node * & root, char * prodiver_to_remove);
