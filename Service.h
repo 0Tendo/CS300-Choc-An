@@ -5,6 +5,7 @@ class Service
 {
 public:
 	Service();
+	getService();
 	Service(char*, int, char*, char*, int, int, float, char*);
 	Service(const Service* To_Add);
 	~Service();
