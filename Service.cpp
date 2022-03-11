@@ -93,6 +93,42 @@ Service::~Service()
 		delete [] comments;
 }
 
+Service::getService()
+{
+	char* se_name, int code, char* pr_date, char* lo_date, int memID, int proID, float fee, char* se_comments
+
+	std::cout << "Service ID: " << std::endl;
+	cin >> code;
+
+	/*se_name = */           //ID matches name 
+
+	std::cout << "Date Provided: " << std::endl;
+	cin.get(pr_date, 12);
+
+	std::cout << "Date Logged: " << std::endl;
+	cin.get(lo_date, 12);
+
+	memID = number;
+
+	std::cout << "Provider ID: " << std::endl;
+	cin >> proID;
+
+	/*fee = */              //ID matches  fee
+	
+	std::cout << "\nWould you like to record comments on this service? Y/N\n";
+	if (yesorno()) {
+		do {
+			std::cout << "\nEnter your comments (" << MAX_COMMENT - 1 << " characters max)\n";
+			std::cin >> se_comments;
+			if (strlen(se_comments.c_str()) > MAX_COMMENT - 1) {
+				std::cout << "Comment too long.\n";
+			}
+		} while (strlen(se_comments.c_str()) > MAX_COMMENT - 1);
+	}
+	Service(se_name, code, pr_date, lo_date, memID, proID, fee, se_comments);
+	display();
+}
+
 int Service::display()
 {
 	if (!service_name)
