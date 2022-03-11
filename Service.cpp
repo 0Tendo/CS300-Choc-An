@@ -2,6 +2,18 @@
 #include <cstring>
 #include "Service.h"
 
+struct Serv
+{
+   	char* service_name;
+	int service_code;
+	char* provided_date;
+	char* logged_date;
+	int memberID;
+	int providerID;
+	float service_fee;
+	char* comments;
+};
+
 Service::Service()
 {
 	service_name = NULL;
