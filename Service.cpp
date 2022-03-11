@@ -14,7 +14,7 @@ Service::Service()
 	comments = NULL;
 }
 
-//Service::Service(char* se_name, int code, char* pr_date, char* lo_date, int memID, int proID, float fee, char * se_comments) {
+/*Service::Service(char* se_name, int code, char* pr_date, char* lo_date, int memID, int proID, float fee, char * se_comments) {
 
     service_name = new char[MAX_NAME];
     strcpy(service_name, se_name);
@@ -27,10 +27,10 @@ Service::Service()
 
     provided_date = new char[MAX_DATE];
     strcpy(provided_date, pr_date);
-    /* ToDo Check_data */
+
     logged_date = new char[MAX_DATE];
     strcpy(logged_date, lo_date);
-    /* ToDo Check_data */
+
 
     if (proID <= 0 || proID > MAX_ID) {
         providerID = 0;
@@ -52,7 +52,7 @@ Service::Service()
 
 	comments = new char[MAX_COMMENT];
 	strcpy(comments, se_comments);
-}//
+}*/
 
 
 
