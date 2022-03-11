@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <cstring>
+#include "BasicDefinition.h"
 using namespace std;
 
 
@@ -13,14 +14,6 @@ using namespace std;
 //CS300 Term Project - PSU Winter 2022
 //Chocoholics Service Terminal Software
 
-
-const int NAMESIZE = 26;
-const int NUMBERSIZE = 10;
-const int ADDRESSSIZE = 26;
-const int CITYSIZE = 15;
-const int STATESIZE = 3;
-const int ZIPSIZE = 6;
-const int MMDDYY = 7;
 
 
 //displays invalidity of inputted data based on its associated prime number

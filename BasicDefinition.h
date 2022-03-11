@@ -14,5 +14,15 @@ const float MAX_FEE = 999.99;	// MUST be less than $999.99
 const int MAX_SERVICE = 999999; // MUST be less than 7 digits
 const int MAX_DATE = 11;		// MUST be MM-DD-YYYY format
 
+const int NAMESIZE = 26;
+const int NUMBERSIZE = 10;
+const int ADDRESSSIZE = 26;
+const int CITYSIZE = 15;
+const int STATESIZE = 3;
+const int ZIPSIZE = 6;
+const int MMDDYY = 7;
+
+const int comment = 100;
+
 
 #endif
