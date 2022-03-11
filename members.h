@@ -24,6 +24,9 @@ class member
         int delete_all();
         char * get_name();
         int get_memberID();
+
+		//ENS - load data from file
+		void LoadMember(char * temp_name, char * temp_address, char * temp_city, char * temp_state, char * temp_number, char * temp_zip);
     private:
         char * name;
         char * address;
@@ -72,6 +75,12 @@ class tree
                 bool search_ID(int number);
 		int remove_all();
 		int display();
+
+		//ENS - load data from file
+		void LoadData();
 	private:
 		node_member*root;
 };
+
+
+

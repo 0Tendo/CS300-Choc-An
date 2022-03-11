@@ -23,6 +23,7 @@ int main()
 	//welcome message
 	cout << "\n\nWelcome to the ChocAn Terminal Manager\n\n\n";
 	temp_providers->LoadData();
+	new_tree->LoadData();
 
 	//while loop for main menu using switch statement for selection
 	while (selection != 'Z')
@@ -81,7 +82,7 @@ int main()
 				cin.get(); 
 				break;
 			case '4':	
-				//TODO - display weekly report
+				new_tree->display();
 				cout << "\n\nPress enter to return to the main menu...\n";
 				cin.get(); 
 				break;

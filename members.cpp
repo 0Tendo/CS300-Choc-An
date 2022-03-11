@@ -507,3 +507,63 @@ int tree::display()
 	root->display();
 	return 1;
 }
+
+
+void tree::LoadData()
+{
+    char temp_name[NAMESIZE];
+    char temp_number[NUMBERSIZE];
+    char temp_address[ADDRESSSIZE];
+    char temp_city[CITYSIZE];
+    char temp_state[STATESIZE];
+    char temp_zip[ZIPSIZE];
+    char filename[50] = "members.txt";
+    int fsize = FileSize(filename);
+    int i = 0;
+    ifstream infile;
+    infile.open(filename);
+    if (!infile)
+    {
+        cerr <<"Failed to open " << filename << endl;
+    }
+    while (infile && !infile.eof())
+    {
+        infile.ignore(1000, '\n'); 
+        infile.get(temp_name, NAMESIZE, '#');
+        infile.ignore();
+        infile.get(temp_address, ADDRESSSIZE, '#');
+        infile.ignore();
+        infile.get(temp_city, CITYSIZE, '#');
+        infile.ignore();
+        infile.get(temp_state, STATESIZE, '#');
+        infile.ignore();
+        infile.get(temp_number, NUMBERSIZE, '#');
+        infile.ignore();
+        infile.get(temp_zip, ZIPSIZE, '#');
+        infile.ignore();
+        member temp_member;
+        temp_member.LoadMember(temp_name, temp_address, temp_city, temp_state, temp_number, temp_zip); 
+        insert(&temp_member);
+        i++;
+    }
+    return;
+}
+
+
+void member::LoadMember(char * temp_name, char * temp_address, char * temp_city, char * temp_state, char * temp_number, char * temp_zip)
+{
+    name = new char[strlen(temp_name)+1];
+    strcpy(name, temp_name);
+    //number = new char[strlen(temp_number)+1];
+    //strcpy(number, temp_number);
+    address = new char[strlen(temp_address)+1];
+    strcpy(address, temp_address);
+    city = new char[strlen(temp_city)+1];
+    strcpy(city, temp_city);
+    state = new char[strlen(temp_state)+1];
+    strcpy(state, temp_state);
+    uppercaser(state);
+    //zip = new char[strlen(temp_zip)+1];
+    //strcpy(zip, temp_zip);
+    return;
+}
