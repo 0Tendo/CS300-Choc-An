@@ -80,7 +80,8 @@ int Service::getService()
 
 	std::cout << "Service ID: " << std::endl;
 	std::cin >> code;
-
+	std::cin.clear();
+   	std::cin.ignore(100,'\n');
 	/*se_name = */           //ID matches name 
 
 	std::cout << "Date Provided: " << std::endl;
@@ -91,10 +92,11 @@ int Service::getService()
 	std::cin.ignore(100, '\n');
 	std::cout << "Provider ID: " << std::endl;
 	std::cin >> proID;
-
+	std::cin.clear();
+    	std::cin.ignore(100,'\n');
 	/*fee = */              //ID matches  fee
 	
-	std::cout << "\nWould you like to record comments on this service? Y/N\n";
+	std::cout << "\nWould you like to record comments on this service? \n";
 	if ("Y") {
 		do {
 			std::cout << "\nEnter your comments (" << MAX_COMMENT - 1 << " characters max)\n";
