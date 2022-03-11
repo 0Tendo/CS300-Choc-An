@@ -252,6 +252,8 @@ providers::providers()
     root = NULL;
 }
 
+providers::~providers() {}
+
 int providers::insert(provider & provider_to_add){
     return insert(root, provider_to_add);
 }
@@ -642,4 +644,64 @@ float provider::GetServiceFee(service_node* service, string sCode) {
     }
 
     return GetServiceFee(service->next, sCode);
+}
+
+int providers::retrieve(char* name_to_get, provider& provider_to_return) {
+    if (!root) {
+        return -1;
+    }
+    if (!root->right && !root->left) {
+        char* check;
+        root->current.retrieve_name(check);
+
+        if (strcmp(check, name_to_get) == 0) {
+            root->current.PopulateProvider(provider_to_return);
+            return 1;
+        }
+    }
+    return retrieve(root, name_to_get, provider_to_return);
+}
+
+int providers::retrieve(node* root, char* name, provider& provider_to_return) {
+
+    if (!root) {
+        return -1;
+    }
+    char* check;
+    root->current.retrieve_name(check);
+
+    if (strcmp(check, name) == 0) {
+        root->current.PopulateProvider(provider_to_return);
+        return 1;
+    }
+
+    int result = retrieve(root->right, name, provider_to_return);
+    result = retrieve(root->left, name, provider_to_return);
+
+    return result;
+}
+
+int provider::PopulateProvider(provider& toPop) {
+
+    toPop.name = new char[strlen(name) + 1];
+    strcpy(toPop.name, name);
+
+    toPop.address = new char(strlen(address) + 1);
+    strcpy(toPop.address, address);
+
+    toPop.city = new char(strlen(city) + 1);
+    strcpy(toPop.city, city);
+
+    toPop.state = new char(strlen(state) + 1);
+    strcpy(toPop.state, state);
+
+    toPop.number = new char(strlen(number) + 1);
+    strcpy(toPop.number, number);
+
+    toPop.zip = new char(strlen(zip) + 1);
+    strcpy(toPop.zip, zip);
+    toPop.total_consults = total_consults;
+    toPop.weekly_fee = weekly_fee;
+    toPop.services = services;
+    return 1;
 }

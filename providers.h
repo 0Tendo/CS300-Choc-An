@@ -73,7 +73,10 @@ class provider
         int DeleteService(string key);
         // CTS - Display All Services
         int DisplayAllService();
+        // CTS - Gets a service fee
         float GetServiceFee(string sCode);
+        // CTS - Populates a provider oobject
+        int PopulateProvider(provider&toPop);
 
     private:
         // CTS - Recursively add a service
