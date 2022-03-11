@@ -11,7 +11,7 @@ class Service
 {
 public:
 	Service();
-	getService();
+	int getService();
 	Service(const Service* To_Add);
 	~Service();
 
