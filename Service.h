@@ -3,12 +3,15 @@
 
 
 
+const int comment = 100;
+const int MMDDYY = 7;
+const int NAMESIZE = 7;
+
 class Service
 {
 public:
 	Service();
-	int getService();
-	Service(char* se_name, int code, char* pr_date, char* lo_date, int memID, int proID, float fee, char * se_comments);
+	getService();
 	Service(const Service* To_Add);
 	~Service();
 
