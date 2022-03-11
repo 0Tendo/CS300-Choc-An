@@ -29,6 +29,7 @@ member::~member()
     delete service;
     service=NULL;
 }
+//create a member
 int member::create_member()
 {
     bool bad=false;
@@ -82,7 +83,7 @@ int member::create_member()
     } while (bad1||number>99999||number<0);
     return 0;
 }
-
+//copy a member
 int member::copy_member(const member & member_to_copy)
 {
     name = new char[strlen(member_to_copy.name)+1];
@@ -104,12 +105,13 @@ int member::copy_member(const member & member_to_copy)
     return 0;
 
 }
+//display a member
 int member::display() const
 {
     cout << "\n\nMember name: " << name << endl;
     cout << "\n\nMember ID: " << number << endl;
-    cout << "Member address: " << address << "\n\t\t  " << city << ", " << state << " " << zip << endl;
-    cout << "Service Record:";
+    cout << "\n\nMember address: " << address << "\n\t\t  " << city << ", " << state << " " << zip << endl;
+    cout << "\n\nService Record:";
     service_node * cur = service;
     int i = 1;
     while (cur != NULL)
@@ -126,7 +128,7 @@ int member::display() const
     return 0;
 }
 
-
+//change the name
 int member::retrieve_name(char * & name_to_ret)
 {
     if(name)
@@ -136,3 +138,5 @@ int member::retrieve_name(char * & name_to_ret)
     name = new char[strlen(name_to_ret)+1];
     strcpy(name, name_to_ret);
 }
+
+
