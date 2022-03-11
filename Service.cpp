@@ -1,3 +1,4 @@
+\\Record and output single service
 #include <cstring>
 #include "Service.h"
 
