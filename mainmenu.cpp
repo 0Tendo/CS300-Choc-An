@@ -66,7 +66,8 @@ int main()
 			}
 				break;
 			case '2':
-				//TODO - add service
+				Service * new_service = new Service;
+				new_service->getService();
 				cout << "\n\nPress enter to return to the main menu...\n";
 				cin.get(); 
 				break;
