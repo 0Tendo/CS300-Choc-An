@@ -263,7 +263,7 @@ int providers::insert(node * & root, provider & provider_to_add)
     if (!root)
     {
         root = new node;
-        root->current.copy_provider(provider_to_add);
+        root->current.cp(provider_to_add);
         root->left = NULL;
         root->right = NULL;
         return 0;
@@ -830,8 +830,8 @@ int providers::delete_all(node*& root) {
     return count;
 }
 
-void provider::CopyServiceList(provider& dst) {
-    CopyServiceList(services, dst.services);
+void provider::CopyServiceList(provider*& dst) {
+    CopyServiceList(services, dst->services);
 }
 void provider::CopyServiceList(service_node* src, service_node*& dst) {
     if (!src) {
@@ -847,5 +847,50 @@ void provider::CopyServiceList(service_node* src, service_node*& dst) {
     dst->service_name = src->service_name;
     dst->fee = src->fee;
 
+    if (!src->next) dst->next = NULL;
+
     CopyServiceList(src->next, dst->next);
+}
+
+int provider::cp(provider& to_copy)
+{
+    name = new char[strlen(to_copy.name) + 1];
+    address = new char[strlen(to_copy.address) + 1];
+    city = new char[strlen(to_copy.city) + 1];
+    state = new char[strlen(to_copy.state) + 1];
+    zip = new char[strlen(to_copy.zip) + 1];
+    number = new char[strlen(to_copy.number) + 1];
+    strcpy(name, to_copy.name);
+    strcpy(address, to_copy.address);
+    strcpy(city, to_copy.city);
+    strcpy(state, to_copy.state);
+    strcpy(zip, to_copy.zip);
+    strcpy(number, to_copy.number);
+
+    if (to_copy.services == NULL) {
+        services = NULL;
+    }
+    else {
+        provider* t = this;
+        to_copy.CopyServiceList(t);
+    }
+    return 0;
+}
+
+int providers::Remove(char* provNumber) {
+    if (!root) {
+        return 0;
+    }
+    if (!root->right && !root->left) {
+
+        char* temp;
+        root->current.retrieve_number(temp);
+
+        if (strcmp(temp, provNumber) == 0) {
+            root->current.DeleteAllServices();
+            delete root;
+            root = NULL;
+            return 1;
+        }
+    }
 }
