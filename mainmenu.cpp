@@ -1,6 +1,5 @@
 #include "members.h"
 #include "Service.h"
-using namespace std;
 
 //Ethan Saftler, Ryan Tran, Cristian Torres Salazar, Matthew Marcellinus, Yuxin Sun, Chentao Ma
 
@@ -16,9 +15,16 @@ int main()
 	char quit = 'a';
 	provider * temp_provider = new provider;
 	providers * temp_providers = new providers;
-	//Service * new_service = new Service;
+	Service * new_service = new Service;
+	member*new_member=new member;
 	tree* new_tree=new tree;
 	int check = 0;
+	int i = 0;
+	int j = 0;
+	bool bad = false;
+	char menuselect = '1';
+	char * name_todelete;
+	char temp_name[NAMESIZE];
 
 	//welcome message
 	cout << "\n\nWelcome to the ChocAn Terminal Manager\n\n\n";
@@ -26,6 +32,12 @@ int main()
 	new_tree->LoadData();
 
 	//while loop for main menu using switch statement for selection
+
+	cout << "Enter 0 to proceed to the manager terminal. Enter any other key to proceed to the provider terminal.\n\n\n";
+	cin >> menuselect;
+	cin.ignore(100,'\n');
+	if (menuselect == '0')
+	{
 	while (selection != 'Z')
 	{
 		cout << endl << endl << endl << endl << endl << endl;
@@ -47,35 +59,29 @@ int main()
 		switch(selection)
 		{
 			case '1':
-			{
-				//insert case for adding new member here
-				int number=0;
-				 bool bad=false;
+				 j=0;
+				 bad=false;
    				 do
    				 {
    				     cout<<"Please enter the member ID (9digit)"<<endl;
-   				     cin>>number;
+   				     cin>>j;
     			     bad=cin.fail();
     			     if(bad)
       		         cout<<"The Id need to be 9 digits"<<endl;
       			     cin.clear();
     			     cin.ignore(100,'\n');   
-  				  } while (bad||number>999999999||number<0);
-				int i=new_tree->search_ID(number);
+  				  } while (bad||j>999999999||j<0);
+				i=new_tree->search_ID(j);
 				if(i==0)
 				cout<<"Sorry we don't have this member"<<endl;
 				cout << "\n\nPress enter to return to the main menu...\n";
 				cin.get(); 
-			}
 				break;
 			case '2':
-				{
-				Service new_service ;
-				new_service.getService();
+				new_service->getService();
 				cout << "\n\nPress enter to return to the main menu...\n";
 				cin.get(); 
 				break;
-				}
 			case '3':	
 				temp_providers->display_all();
 				cout << "\n\nPress enter to return to the main menu...\n";
@@ -87,26 +93,19 @@ int main()
 				cin.get(); 
 				break;
 			case '5':
-			{
-				member*new_member=new member;
                 new_member->create_member();
 				new_tree->insert(new_member);
 				new_tree->display();
 				cout << "\n\nPress enter to return to the main menu...\n";
 				cin.get(); 
-			}
 				break;
 			case '6':	
-				{
-					char * name_todelete;
 					cout<<"Please enter the member name you want to delete.\n";
-					char temp_name[NAMESIZE];
 					cin.get(temp_name, NAMESIZE, '\n');
     				cin.ignore(100, '\n');
 					name_todelete = new char[strlen(temp_name)+1];
    				    strcpy(name_todelete, temp_name);
 					new_tree->remove(name_todelete);
-				}
 				cout << "\n\nPress enter to return to the main menu...\n";
 				cin.get(); 
 				break;
@@ -153,7 +152,95 @@ int main()
 				cerr << "Invalid response.";
 				break;
 		}
+	}
+	}else{
+while (selection != 'Z')
+	{
+		cout << endl << endl << endl << endl << endl << endl;
+		cout << "Chocoholics Anonymous Provider Terminal\n\n";
+		cout << "*** Main Menu *** \n";
+		cout << "(Make a selection)\n";
+		cout << "	1 - Select member by number (Slide member card)\n";
+		cout << "	2 - Add service for selected member (Bill ChocAn)\n";
+		cout << "	3 - Request Provider Directory\n";
+		cout << "	4 - Run weekly report\n";
+		cout << "	5 - Add Member\n";
+		cout << "	E - Exit\n ";
 
+		cin >> selection;
+		cin.ignore(100, '\n');
+		switch(selection)
+		{
+			case '1':
+				 j=0;
+				 bad=false;
+   				 do
+   				 {
+   				     cout<<"Please enter the member ID (9digit)"<<endl;
+   				     cin>>j;
+    			     bad=cin.fail();
+    			     if(bad)
+      		         cout<<"The Id need to be 9 digits"<<endl;
+      			     cin.clear();
+    			     cin.ignore(100,'\n');   
+  				  } while (bad||j>999999999||j<0);
+				i=new_tree->search_ID(j);
+				if(i==0)
+				cout<<"Sorry we don't have this member"<<endl;
+				cout << "\n\nPress enter to return to the main menu...\n";
+				cin.get(); 
+				break;
+			case '2':
+				new_service->getService();
+				cout << "\n\nPress enter to return to the main menu...\n";
+				cin.get(); 
+				break;
+			case '3':	
+				temp_providers->display_all();
+				cout << "\n\nPress enter to return to the main menu...\n";
+				cin.get(); 
+				break;
+			case '4':	
+				new_tree->display();
+				cout << "\n\nPress enter to return to the main menu...\n";
+				cin.get(); 
+				break;
+			case '5':
+                new_member->create_member();
+				new_tree->insert(new_member);
+				new_tree->display();
+				cout << "\n\nPress enter to return to the main menu...\n";
+				cin.get(); 
+				break;
+			case 'E':
+				cout << endl << "Are you sure you would like to quit?" << endl;
+				cout << "Enter 'Y' to quit or any other key to return to the main menu." << endl;
+				cin >> quit;
+				cin.ignore(100, '\n');
+				if ( quit == 'Y' || quit == 'y' )
+				{
+					selection = 'Z';
+				}
+				break;
+			case 'e':		
+				cout << endl << "Are you sure you would like to quit?" << endl;
+				cout << "Enter 'Y' to quit or any other key to return to the main menu." << endl;
+				cin >> quit;
+				cin.ignore(100, '\n');
+				if ( quit == 'Y' || quit == 'y' )
+				{
+					selection = 'Z';
+				}
+				break;
+			case 'Z':
+				cerr << "Invalid response.";
+				selection = '0';
+				break;
+			default:
+				cerr << "Invalid response.";
+				break;
+		}
+	}
 
 	}
 

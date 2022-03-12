@@ -425,7 +425,7 @@ void node_member::display() const
 	if(this==NULL)
 		return ;
 	this->left->display();
-	this->data->display( );
+	this->data->display();
 	this->right->display();
 	return ;
 }
