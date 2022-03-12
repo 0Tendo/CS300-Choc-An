@@ -382,24 +382,7 @@ bool node_member::search(char*name_search, member**i)
 	}
 	*i=this->data;
 	return 1;
-			
-}
-//search the node by number
-bool node_member::search_ID(int search_num)
-{
-	if(this==NULL)
-		return 0;
-	if(search_num!=this->data->get_memberID())
-	{
-		this->left->search_ID(search_num)+this->right->search_ID(search_num);
-    }
-    if(search_num==this->data->get_memberID())
-    {
-	    this->data->display();
-	    return 1;
-    }
-    return 0;
-			
+
 }
 //delete the whole tree
 int node_member::delete_all()
@@ -425,9 +408,25 @@ void node_member::display() const
 	if(this==NULL)
 		return ;
 	this->left->display();
-	this->data->display();
+	this->data->display( );
 	this->right->display();
 	return ;
+}
+bool node_member::search_ID(int search_num)
+{
+	if(this==NULL)
+		return 0;
+	if(search_num!=this->data->get_memberID())
+	{
+		this->left->search_ID(search_num)+this->right->search_ID(search_num);
+    }
+    if(search_num==this->data->get_memberID())
+    {
+	    this->data->display();
+	    return 1;
+    }
+    return 0;
+
 }
 
 
@@ -480,12 +479,6 @@ bool tree::search(char*name, member**i)
 		return 0;
 	return root->search(name,i);
 }
-bool tree::search_ID(int search_num)
-{
-	if(!root)
-		return 0;
-	return root->search_ID(search_num);
-}
 //remove all node in the list
 int tree::remove_all()
 {
@@ -507,16 +500,20 @@ int tree::display()
 	root->display();
 	return 1;
 }
-
-
+bool tree::search_ID(int search_num)
+{
+	if(!root)
+		return 0;
+	return root->search_ID(search_num);
+}
 void tree::LoadData()
 {
     char temp_name[NAMESIZE];
-    char temp_number[NUMBERSIZE];
+    int temp_number;
     char temp_address[ADDRESSSIZE];
     char temp_city[CITYSIZE];
     char temp_state[STATESIZE];
-    char temp_zip[ZIPSIZE];
+    int temp_zip;
     char filename[50] = "members.txt";
     int fsize = FileSize(filename);
     int i = 0;
@@ -537,9 +534,9 @@ void tree::LoadData()
         infile.ignore();
         infile.get(temp_state, STATESIZE, '#');
         infile.ignore();
-        infile.get(temp_number, NUMBERSIZE, '#');
+        infile>>temp_number;
         infile.ignore();
-        infile.get(temp_zip, ZIPSIZE, '#');
+        infile>>temp_zip;
         infile.ignore();
         member temp_member;
         temp_member.LoadMember(temp_name, temp_address, temp_city, temp_state, temp_number, temp_zip); 
@@ -550,12 +547,11 @@ void tree::LoadData()
 }
 
 
-void member::LoadMember(char * temp_name, char * temp_address, char * temp_city, char * temp_state, char * temp_number, char * temp_zip)
+void member::LoadMember(char * temp_name, char * temp_address, char * temp_city, char * temp_state, int temp_number, int temp_zip)
 {
     name = new char[strlen(temp_name)+1];
     strcpy(name, temp_name);
-    //number = new char[strlen(temp_number)+1];
-    //strcpy(number, temp_number);
+    number = temp_number;
     address = new char[strlen(temp_address)+1];
     strcpy(address, temp_address);
     city = new char[strlen(temp_city)+1];
@@ -563,7 +559,6 @@ void member::LoadMember(char * temp_name, char * temp_address, char * temp_city,
     state = new char[strlen(temp_state)+1];
     strcpy(state, temp_state);
     uppercaser(state);
-    //zip = new char[strlen(temp_zip)+1];
-    //strcpy(zip, temp_zip);
+    zip = temp_zip;
     return;
 }

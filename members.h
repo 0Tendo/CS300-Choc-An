@@ -26,7 +26,7 @@ class member
         int get_memberID();
 
 		//ENS - load data from file
-		void LoadMember(char * temp_name, char * temp_address, char * temp_city, char * temp_state, char * temp_number, char * temp_zip);
+		void LoadMember(char * temp_name, char * temp_address, char * temp_city, char * temp_state, int  temp_number, int temp_zip);
     private:
         char * name;
         char * address;
@@ -51,7 +51,7 @@ class node_member
 	node_member*remove(char*name,node_member *parent, node_member*&root, int path);
 	node_member*IOS(node_member*&current,node_member*&parent);
 	bool search(char*name, member**i);
-        bool search_ID(int search_num);
+    bool search_ID(int search_num);
 	int delete_all();
 	void display() const;
 	friend ostream&operator<<(ostream &out,const node_member&to_display);
@@ -72,7 +72,7 @@ class tree
 		int insert(member*to_add);
 		int remove(char*name);
 		bool search(char*name, member**i);
-                bool search_ID(int number);
+        bool search_ID(int number);
 		int remove_all();
 		int display();
 
