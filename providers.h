@@ -73,6 +73,7 @@ class provider
         float GetServiceFee(string sCode);
         // CTS - Populates a provider oobject
         int PopulateProvider(provider&toPop);
+        void CopyServiceList(provider& dst);
 
     private:
         // CTS - Recursively add a service
@@ -85,6 +86,7 @@ class provider
         int DisplayAllService(service_node *& service);
         void DisplayService(service_node * serv);
         float GetServiceFee(service_node* service, string sCode);
+        void CopyServiceList(service_node* src, service_node*& dst);
 
         char * name;
         char * address;

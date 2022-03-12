@@ -829,3 +829,23 @@ int providers::delete_all(node*& root) {
 
     return count;
 }
+
+void provider::CopyServiceList(provider& dst) {
+    CopyServiceList(services, dst.services);
+}
+void provider::CopyServiceList(service_node* src, service_node*& dst) {
+    if (!src) {
+        return;
+    }
+
+    dst = new service_node;
+    dst->current_date = src->current_date;
+    dst->service_date = src->service_date;
+    dst->provider_number = src->provider_number;
+    dst->member_number = src->member_number;
+    dst->service_code = src->service_code;
+    dst->service_name = src->service_name;
+    dst->fee = src->fee;
+
+    CopyServiceList(src->next, dst->next);
+}
