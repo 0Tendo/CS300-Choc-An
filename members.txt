@@ -1,4 +1,4 @@
 Name#Address#City#State#Number#Zip#
-Mary#123 8th Ave#Tualatin#OR#97062#
-Micah#456 7th St#Clamath#OR#96999#
-Ormond#111 9th Ave#Portland#OR#97112#
+Mary#123 8th Ave#Tualatin#OR#1000000001#97062#
+Micah#456 7th St#Clamath#OR#1000000002#96999#
+Ormond#111 9th Ave#Portland#OR#1000000003#97112#
