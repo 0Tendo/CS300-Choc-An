@@ -782,3 +782,50 @@ void provider::LoadProvider(char * temp_name, char * temp_address, char * temp_c
     strcpy(zip, temp_zip);
     return;
 }
+
+/// <summary>
+/// Deletes all providers nodes from the list. This method handles base cases
+/// for an empty list and a single node and calls the recursive delete_all
+/// for all other cases.
+/// </summary>
+/// <returns>number of nodes removed</returns>
+int providers::delete_all() {
+
+    // empty list
+    if (!root) {
+        return 0;
+    }
+
+    // single node
+    if (!root->right && !root->left) {
+        root->current.DeleteAllServices();
+        delete root;
+        root = NULL;
+        return 1;
+    }
+
+    // all other cases
+    return delete_all(root);
+}
+
+/// <summary>
+/// Recursively Deletes all providers nodes withing the tree of records.
+/// </summary>
+/// <param name="root">pinter to providers list</param>
+/// <returns>number of nodes removed</returns>
+int providers::delete_all(node*& root) {
+    if (!root) {
+        return 0;
+    }
+
+    int count = 0;
+    count += delete_all(root->right);
+    count += delete_all(root->left);
+
+    ++count;
+    root->current.DeleteAllServices();
+    delete root;
+    root = NULL;
+
+    return count;
+}

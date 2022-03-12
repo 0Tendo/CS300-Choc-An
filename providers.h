@@ -115,8 +115,8 @@ class providers
                 providers();
                 ~providers();
 
-                //TO DO int delete_all();
-                //TO DO int delete_all(node * & root);
+                int delete_all();
+                int delete_all(node * & root);
 
                 int insert (provider & provider_to_add);
                 int insert (node * & root, provider & provider_to_add);
